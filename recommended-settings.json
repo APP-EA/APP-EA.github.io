@@ -1,0 +1,30 @@
+{
+  "_comment": "Optional pre-authorization for crear-web-micro-saas. Copy these entries into your ~/.claude/settings.json under permissions.allow. Covers the three capabilities (connect, build, publish). Scoped to this skill's scripts, the Hostinger connection commands, and a few safe helpers — nothing destructive.",
+
+  "permissions": {
+    "allow": [
+      "Bash(python *crear-web-micro-saas/scripts/*.py*)",
+      "Bash(python3 *crear-web-micro-saas/scripts/*.py*)",
+      "Bash(bash *crear-web-micro-saas/scripts/*.sh*)",
+      "Bash(powershell *crear-web-micro-saas/scripts/*.ps1*)",
+      "Bash(python scripts/descargar-librerias.py*)",
+      "Bash(python3 scripts/descargar-librerias.py*)",
+
+      "Bash(claude mcp add *)",
+      "Bash(claude mcp list*)",
+      "Bash(npm install -g hostinger-api-mcp*)",
+      "Bash(hostinger-*-mcp *)",
+      "Bash(winget install OpenJS.NodeJS*)",
+
+      "Bash(mkdir -p *)",
+      "Bash(ls *)",
+      "Bash(cp *)",
+      "Bash(grep *)",
+      "Bash(command -v *)",
+      "Bash(which *)",
+
+      "Bash(python -m http.server *)",
+      "Bash(python3 -m http.server *)"
+    ]
+  }
+}
