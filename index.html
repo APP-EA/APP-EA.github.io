@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Código QR para imprimir en 3D gratis | Relieve QR</title>
+<meta name="description" content="Crea un código QR para imprimir en 3D: soporte de mesa, llavero o placa. Descarga en 3MF a dos colores (o STL), PNG y SVG. Gratis y sin registro.">
+<link rel="canonical" href="https://relieveqr.com/">
+<!-- TODO: cambia https://relieveqr.com/ por tu dominio definitivo (canonical, og:url, JSON-LD, sitemap.xml) -->
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#F3F4F1">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_ES">
+<meta property="og:site_name" content="Relieve QR">
+<meta property="og:title" content="Código QR para imprimir en 3D — soporte, llavero o placa">
+<meta property="og:description" content="Pega tu enlace, personaliza el QR y descárgalo en 3MF a dos colores listo para tu impresora 3D. Gratis y sin registro.">
+<meta property="og:url" content="https://relieveqr.com/">
+<meta property="og:image" content="https://relieveqr.com/assets/img/og-relieve-qr.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="styles.css?v=20260923">
+<!-- TODO consentimiento de cookies: pega aquí el script de tu CMP (gestor de consentimiento) cuando actives AdSense -->
+<script type="importmap">
+{ "imports": {
+    "three": "./lib/vendor/three/three.module.min.js",
+    "three/addons/": "./lib/vendor/three/addons/"
+} }
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Relieve QR — Generador de códigos QR para imprimir en 3D",
+  "url": "https://relieveqr.com/",
+  "description": "Generador gratuito de códigos QR personalizados con descarga en 3MF a dos colores y STL para impresión 3D: soporte de mesa, llavero y placa de pared. También PNG y SVG.",
+  "applicationCategory": "DesignApplication",
+  "operatingSystem": "Cualquiera (navegador web)",
+  "inLanguage": "es",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "¿Qué es un archivo 3MF y por qué es mejor que el STL para un QR?",
+      "acceptedAnswer": { "@type": "Answer", "text": "El 3MF es el formato moderno de impresión 3D. A diferencia del STL, guarda varias piezas y su color dentro del mismo archivo. Así la base y el código en relieve se abren ya separados y con su color, y tu programa de impresión asigna cada uno a un filamento sin que tengas que hacer nada." } },
+    { "@type": "Question", "name": "¿El QR impreso en 3D se puede escanear con el móvil?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Sí, siempre que haya contraste entre los dos colores (base clara y código oscuro es lo más fiable) y que cada cuadradito del código mida al menos 1,5 mm. La herramienta te avisa en directo si el contraste o el tamaño no son suficientes." } },
+    { "@type": "Question", "name": "¿Qué impresora necesito para imprimirlo a dos colores?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Lo ideal es una impresora con varios filamentos (Bambu Lab con AMS, Prusa con MMU, Creality K1/K2 con CFS, etc.). Con una impresora de un solo extrusor también puedes: pon una pausa o un cambio de filamento en la capa donde empieza el relieve." } },
+    { "@type": "Question", "name": "¿Con qué programas se abre el archivo 3MF?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Con cualquier programa de laminado actual: Bambu Studio, OrcaSlicer, PrusaSlicer, UltiMaker Cura, Creality Print o Anycubic Slicer." } },
+    { "@type": "Question", "name": "¿Para qué sirve la descarga en STL?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Es para programas o impresoras antiguas que no leen 3MF. Descargas un ZIP con dos STL (la base y el código) que debes importar juntos y asignar a cada uno su filamento." } },
+    { "@type": "Question", "name": "¿Puedo poner el logo de mi negocio en el centro del QR?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Sí. Sube tu logo o elige un emoji. En la versión 3D el logo se convierte en una silueta en relieve del color del código. El QR usa entonces la máxima corrección de errores para seguir leyéndose, pero conviene probarlo con el móvil antes de imprimir muchos." } },
+    { "@type": "Question", "name": "¿Es gratis? ¿Necesito registrarme?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Es gratis y no hace falta registro. Todo se genera en tu navegador: tu enlace, tu logo y tus archivos no se suben a ningún servidor. Los códigos son estáticos y no caducan." } }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#herramienta">Ir a la herramienta</a>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="./" aria-label="Relieve QR, inicio">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect x="1" y="5" width="30" height="26" rx="6" class="bm-base"/><rect x="5" y="1" width="22" height="22" rx="4" class="bm-top"/><rect x="9" y="5" width="6" height="6" rx="1" class="bm-dot"/><rect x="17" y="13" width="6" height="6" rx="1" class="bm-dot"/><rect x="9" y="13" width="3" height="3" class="bm-dot"/><rect x="20" y="6" width="3" height="3" class="bm-dot"/></svg>
+      <span>Relieve&nbsp;QR</span>
+    </a>
+    <nav class="header-nav" aria-label="Secciones">
+      <a href="#como-funciona">Cómo funciona</a>
+      <a href="#ideas">Ideas</a>
+      <a href="#preguntas">Preguntas</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="intro wrap">
+    <h1>Código QR para imprimir en 3D</h1>
+    <p class="lede">Pega tu enlace, dale estilo y descárgalo como <strong>soporte de mesa, llavero o placa</strong> en 3MF a dos colores, listo para tu impresora. Gratis, sin registro.</p>
+  </section>
+
+  <section class="wrap" id="herramienta" aria-label="Generador de QR 3D">
+    <noscript><p class="noscript">Esta herramienta necesita JavaScript activado para generar el código QR y el archivo 3D.</p></noscript>
+    <div class="tool" data-state="ready">
+
+      <!-- ============ 1 · CONTENIDO ============ -->
+      <fieldset class="step step-content">
+        <legend><span class="step-n">1</span> ¿A dónde lleva tu QR?</legend>
+        <div class="seg" role="tablist" aria-label="Tipo de contenido">
+          <button type="button" role="tab" id="modeLink" aria-selected="true" data-mode="link">Enlace</button>
+          <button type="button" role="tab" id="modeWifi" aria-selected="false" data-mode="wifi">Wifi del local</button>
+        </div>
+
+        <div class="mode-pane" data-pane="link">
+          <label class="field-label" for="qrUrl">Pega tu enlace</label>
+          <input id="qrUrl" class="input input-big" type="url" inputmode="url" autocomplete="url" spellcheck="false" value="https://turestaurante.com/carta" placeholder="https://…">
+          <div class="chips" aria-label="Ejemplos rápidos">
+            <button type="button" class="chip" data-example="carta">Carta del restaurante</button>
+            <button type="button" class="chip" data-example="resenas">Reseñas de Google</button>
+            <button type="button" class="chip" data-example="instagram">Instagram</button>
+            <button type="button" class="chip" data-example="web">Tu web</button>
+          </div>
+          <p class="hint" id="urlHint">Ejemplo cargado: sustitúyelo por el enlace de tu carta.</p>
+        </div>
+
+        <div class="mode-pane" data-pane="wifi" hidden>
+          <div class="row-2">
+            <div>
+              <label class="field-label" for="wifiSsid">Nombre de la red</label>
+              <input id="wifiSsid" class="input" type="text" autocomplete="off" spellcheck="false" placeholder="Cafe_Luna_Clientes">
+            </div>
+            <div>
+              <label class="field-label" for="wifiPass">Contraseña</label>
+              <input id="wifiPass" class="input" type="text" autocomplete="off" spellcheck="false" placeholder="••••••••">
+            </div>
+          </div>
+          <div class="row-2">
+            <div>
+              <label class="field-label" for="wifiSec">Seguridad</label>
+              <select id="wifiSec" class="input">
+                <option value="WPA">WPA / WPA2 / WPA3</option>
+                <option value="WEP">WEP</option>
+                <option value="nopass">Sin contraseña</option>
+              </select>
+            </div>
+            <label class="check"><input id="wifiHidden" type="checkbox"> Red oculta</label>
+          </div>
+          <p class="hint">Al escanearlo, el móvil se conecta solo. La contraseña va dentro del código: no se envía a ningún sitio.</p>
+        </div>
+      </fieldset>
+
+      <!-- ============ VISTA PREVIA ============ -->
+      <div class="preview" aria-live="polite">
+        <div class="pv-grid">
+          <figure class="pv-card pv-2d">
+            <figcaption class="pv-cap">Imagen</figcaption>
+            <div id="qr2d" class="qr2d" role="img" aria-label="Vista previa del código QR"></div>
+            <p class="pv-empty" id="qrEmpty" hidden>Escribe un enlace para ver tu QR.</p>
+            <div class="btn-row">
+              <button type="button" class="btn btn-quiet" id="dlPng">PNG</button>
+              <button type="button" class="btn btn-quiet" id="dlSvg">SVG</button>
+            </div>
+          </figure>
+          <figure class="pv-card pv-3d">
+            <figcaption class="pv-cap">Objeto 3D <span class="pv-dims" id="dims">—</span></figcaption>
+            <div class="viewer" id="viewer">
+              <p class="viewer-msg" id="viewerMsg">Preparando la vista 3D…</p>
+              <span class="viewer-hint" aria-hidden="true">Arrastra para girar · rueda para acercar</span>
+            </div>
+          </figure>
+        </div>
+        <ul class="checks" id="checks" aria-label="Comprobaciones de impresión"></ul>
+        <div class="dl-main">
+          <button type="button" class="btn btn-primary" id="dl3mf">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 19h16" /></svg>
+            <span>Descargar 3MF a dos colores</span>
+          </button>
+          <p class="dl-sub">Para Bambu Studio, OrcaSlicer, PrusaSlicer, Cura… · <button type="button" class="linklike" id="dlStl">¿Impresora antigua? Descargar STL</button></p>
+        </div>
+      </div>
+
+      <!-- ============ 2 · DISEÑO ============ -->
+      <fieldset class="step step-design">
+        <legend><span class="step-n">2</span> Diseño del código</legend>
+        <p class="field-label" id="styleLbl">Estilo de los puntos</p>
+        <div class="style-grid" role="radiogroup" aria-labelledby="styleLbl">
+          <label class="opt"><input type="radio" name="qrStyle" value="clasico"><span class="opt-body"><svg viewBox="0 0 30 30" aria-hidden="true"><rect x="2" y="2" width="11" height="11"/><rect x="17" y="2" width="5" height="5"/><rect x="17" y="10" width="5" height="5"/><rect x="2" y="17" width="5" height="5"/><rect x="10" y="17" width="5" height="5"/><rect x="18" y="18" width="10" height="10"/></svg>Clásico</span></label>
+          <label class="opt"><input type="radio" name="qrStyle" value="redondeado" checked><span class="opt-body"><svg viewBox="0 0 30 30" aria-hidden="true"><rect x="2" y="2" width="11" height="11" rx="4"/><rect x="17" y="2" width="5" height="5" rx="2"/><rect x="17" y="10" width="5" height="5" rx="2"/><rect x="2" y="17" width="5" height="5" rx="2"/><rect x="10" y="17" width="5" height="5" rx="2"/><rect x="18" y="18" width="10" height="10" rx="4"/></svg>Redondeado</span></label>
+          <label class="opt"><input type="radio" name="qrStyle" value="puntos"><span class="opt-body"><svg viewBox="0 0 30 30" aria-hidden="true"><circle cx="7.5" cy="7.5" r="5.5"/><circle cx="19.5" cy="4.5" r="2.5"/><circle cx="19.5" cy="12.5" r="2.5"/><circle cx="4.5" cy="19.5" r="2.5"/><circle cx="12.5" cy="19.5" r="2.5"/><circle cx="23" cy="23" r="5"/></svg>Puntos</span></label>
+          <label class="opt"><input type="radio" name="qrStyle" value="elegante"><span class="opt-body"><svg viewBox="0 0 30 30" aria-hidden="true"><path d="M2 2h8a3 3 0 0 1 3 3v8H5a3 3 0 0 1-3-3z"/><path d="M17 2h5v5h-2a3 3 0 0 1-3-3z"/><path d="M17 10h5v5h-5z"/><path d="M2 17h5v5H4a2 2 0 0 1-2-2z"/><path d="M10 17h5v5h-5z"/><path d="M18 18h10v7a3 3 0 0 1-3 3h-7z"/></svg>Elegante</span></label>
+        </div>
+
+        <div class="row-2 colors-2d">
+          <label class="color-field" for="fgColor"><input id="fgColor" type="color" value="#17191F"><span>Color del código</span></label>
+          <label class="color-field" for="bgColor"><input id="bgColor" type="color" value="#FFFFFF"><span>Fondo</span></label>
+        </div>
+
+        <p class="field-label" id="centerLbl">En el centro</p>
+        <div class="center-row" role="group" aria-labelledby="centerLbl">
+          <button type="button" class="chip is-on" id="centerNone" aria-pressed="true">Nada</button>
+          <label class="chip chip-file" for="logoFile">Subir logo<input id="logoFile" type="file" accept="image/png,image/jpeg,image/webp,image/svg+xml" hidden></label>
+          <button type="button" class="chip" id="centerClear" hidden>Quitar</button>
+        </div>
+        <div class="emoji-grid" id="emojiGrid" aria-label="Elegir emoji para el centro"></div>
+        <p class="hint" id="centerHint">Toca un emoji para ponerlo en el centro. En 3D se imprime como silueta en relieve.</p>
+      </fieldset>
+
+      <!-- ============ 3 · OBJETO 3D ============ -->
+      <fieldset class="step step-object">
+        <legend><span class="step-n">3</span> Objeto para imprimir</legend>
+        <div class="format-grid" role="radiogroup" aria-label="Formato del objeto">
+          <label class="opt opt-format"><input type="radio" name="format" value="soporte" checked><span class="opt-body">
+            <svg viewBox="0 0 48 36" aria-hidden="true"><path d="M6 32h36L34 6H26z" class="f-base"/><path d="M27.2 9h5.6l6.2 20H21z" class="f-top"/></svg>
+            <b>Soporte de mesa</b><small>Cartas y reseñas</small></span></label>
+          <label class="opt opt-format"><input type="radio" name="format" value="llavero"><span class="opt-body">
+            <svg viewBox="0 0 48 36" aria-hidden="true"><rect x="13" y="3" width="22" height="30" rx="4" class="f-base"/><circle cx="24" cy="8" r="2.4" class="f-hole"/><rect x="17" y="13" width="14" height="14" rx="1.5" class="f-top"/></svg>
+            <b>Llavero</b><small>Con agujero para anilla</small></span></label>
+          <label class="opt opt-format"><input type="radio" name="format" value="placa"><span class="opt-body">
+            <svg viewBox="0 0 48 36" aria-hidden="true"><rect x="8" y="2" width="32" height="32" rx="3" class="f-base"/><circle cx="12.5" cy="6" r="1.6" class="f-hole"/><circle cx="35.5" cy="6" r="1.6" class="f-hole"/><rect x="14" y="10" width="20" height="20" rx="1.5" class="f-top"/></svg>
+            <b>Placa de pared</b><small>Dos agujeros para colgar</small></span></label>
+        </div>
+
+        <div class="row-2">
+          <div>
+            <label class="field-label" for="labelText">Texto (opcional)</label>
+            <input id="labelText" class="input" type="text" maxlength="22" placeholder="Café Luna" value="">
+          </div>
+          <div>
+            <label class="field-label" for="labelEmoji">Emoji junto al texto</label>
+            <select id="labelEmoji" class="input"></select>
+          </div>
+        </div>
+
+        <div class="range-field">
+          <label class="field-label" for="sizeRange">Tamaño del código <output id="sizeOut" for="sizeRange">70 mm</output></label>
+          <input id="sizeRange" type="range" min="30" max="140" step="1" value="70">
+        </div>
+
+        <p class="field-label">Colores de impresión</p>
+        <div class="filaments">
+          <div class="fil-group">
+            <span class="fil-title">Base</span>
+            <div class="swatches" data-target="base" role="group" aria-label="Color de la base"></div>
+          </div>
+          <div class="fil-group">
+            <span class="fil-title">Código y texto</span>
+            <div class="swatches" data-target="code" role="group" aria-label="Color del código y del texto"></div>
+          </div>
+        </div>
+
+        <details class="more">
+          <summary>Ajustes avanzados</summary>
+          <div class="range-field">
+            <label class="field-label" for="reliefRange">Altura del relieve <output id="reliefOut" for="reliefRange">1,2 mm</output></label>
+            <input id="reliefRange" type="range" min="0.6" max="2.4" step="0.2" value="1.2">
+          </div>
+          <div class="range-field">
+            <label class="field-label" for="thickRange">Grosor de la base (llavero y placa) <output id="thickOut" for="thickRange">3,0 mm</output></label>
+            <input id="thickRange" type="range" min="2" max="5" step="0.2" value="3">
+          </div>
+        </details>
+      </fieldset>
+    </div>
+
+    <p class="privacy"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg> 100&nbsp;% privado: el QR y el archivo 3D se generan en tu navegador. Tu enlace y tu logo no se suben a ningún servidor.</p>
+  </section>
+
+  <!-- ============ ANUNCIO · banner bajo la herramienta ============ -->
+  <div class="wrap">
+    <div class="ad-slot ad-leaderboard" data-ad="leaderboard" aria-label="Espacio publicitario">
+      <!-- PEGA AQUÍ TU CÓDIGO DE ADSENSE (banner horizontal 728×90 / móvil 320×100) -->
+      <span class="ad-label">ANUNCIO</span><span class="ad-size">728 × 90 · móvil 320 × 100</span>
+    </div>
+  </div>
+
+  <section class="section wrap" id="como-funciona">
+    <h2>Cómo funciona</h2>
+    <ol class="steps3">
+      <li>
+        <svg viewBox="0 0 48 48" aria-hidden="true"><rect x="6" y="14" width="36" height="20" rx="4"/><path d="M14 24h14"/><path d="M33 20l4 4-4 4"/></svg>
+        <h3>Pega tu enlace</h3>
+        <p>La carta, tu página de reseñas de Google, tu Instagram, tu web o los datos del wifi. No hace falta cuenta.</p>
+      </li>
+      <li>
+        <svg viewBox="0 0 48 48" aria-hidden="true"><rect x="8" y="8" width="13" height="13" rx="3"/><rect x="27" y="8" width="13" height="13" rx="6.5"/><rect x="8" y="27" width="13" height="13" rx="6.5"/><path d="M27 33h13M33.5 27v13"/></svg>
+        <h3>Personaliza y elige el objeto</h3>
+        <p>Estilo de los puntos, colores, tu logo o un emoji. Luego soporte de mesa, llavero o placa, con un texto corto y dos colores de filamento.</p>
+      </li>
+      <li>
+        <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M10 38h28"/><path d="M14 38V26h20v12"/><path d="M18 26V14h12v12"/><path d="M24 6v8"/></svg>
+        <h3>Descarga e imprime</h3>
+        <p>Abre el 3MF en tu programa de impresión: la base y el código ya llegan separados y con su color. Escanéalo con el móvil y listo.</p>
+      </li>
+    </ol>
+  </section>
+
+  <section class="section wrap" id="ideas">
+    <h2>Ideas para tu QR en 3D</h2>
+    <p class="section-lede">Un QR impreso se ve, se toca y no se despega como una pegatina. Algunos usos que funcionan muy bien:</p>
+    <div class="ideas">
+      <article class="idea">
+        <h3>Carta del restaurante en cada mesa</h3>
+        <p>Un soporte de mesa con el nombre del local y la carta digital. Cambias los platos en tu web y el QR sigue valiendo.</p>
+        <span class="idea-tag">Soporte · 70–80 mm</span>
+      </article>
+      <article class="idea">
+        <h3>«Déjanos una reseña» en el mostrador</h3>
+        <p>Pega el enlace para pedir reseñas de tu ficha de Google Business y ponlo junto a la caja, donde el cliente espera.</p>
+        <span class="idea-tag">Soporte · texto «¡Valóranos!»</span>
+      </article>
+      <article class="idea">
+        <h3>Wifi para alojamientos y cafeterías</h3>
+        <p>Una placa en la pared o en la habitación que conecta al huésped sin dictar contraseñas. Ideal para apartamentos turísticos.</p>
+        <span class="idea-tag">Placa · modo wifi</span>
+      </article>
+      <article class="idea">
+        <h3>Llaveros para eventos y bodas</h3>
+        <p>Un recuerdo útil que lleva al álbum de fotos, la web del evento o la lista de reproducción. Imprime una tanda con el mismo archivo.</p>
+        <span class="idea-tag">Llavero · 45–55 mm</span>
+      </article>
+      <article class="idea">
+        <h3>Tu Instagram en el escaparate</h3>
+        <p>Una placa con tu usuario y un emoji que invita a seguirte. Gana seguidores entre quien pasa por delante.</p>
+        <span class="idea-tag">Placa · emoji 📸</span>
+      </article>
+      <article class="idea">
+        <h3>Ferias, stands y tarjetas</h3>
+        <p>Un llavero de regalo con tu catálogo o tu web: el cliente se lo lleva y te encuentra cuando lo necesita.</p>
+        <span class="idea-tag">Llavero · logo en el centro</span>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ ANUNCIO · en mitad del contenido ============ -->
+  <div class="wrap">
+    <div class="ad-slot ad-incontent" data-ad="in-content" aria-label="Espacio publicitario">
+      <!-- PEGA AQUÍ TU CÓDIGO DE ADSENSE (anuncio en contenido, adaptable) -->
+      <span class="ad-label">ANUNCIO</span><span class="ad-size">En contenido · adaptable</span>
+    </div>
+  </div>
+
+  <section class="section wrap prose" id="guia">
+    <h2>Cómo imprimir un código QR en 3D que se escanee a la primera</h2>
+    <p>Un código QR impreso en 3D funciona igual que uno en papel: el móvil busca el contraste entre los cuadraditos oscuros y el fondo claro. Por eso el objeto se genera en <strong>dos piezas</strong>, una base y el código en relieve, y cada una se imprime con un filamento distinto. Si imprimes todo del mismo color, el relieve solo se nota con luz rasante y el móvil casi nunca lo lee.</p>
+    <h3>Por qué 3MF y no STL</h3>
+    <p>El STL solo describe formas: no sabe de colores ni de piezas. El <strong>3MF</strong> guarda en un único archivo las dos piezas, cada una con su color. Al abrirlo en Bambu Studio, OrcaSlicer o PrusaSlicer, la base y el código aparecen ya separados y coloreados, y solo tienes que confirmar qué filamento va en cada uno. Si tu programa es antiguo, descarga el STL: recibirás dos archivos que debes importar juntos.</p>
+    <h3>Tres reglas para que se lea</h3>
+    <ul>
+      <li><strong>Contraste real.</strong> Base clara y código oscuro (blanco y negro, crema y azul marino…). Los códigos invertidos funcionan en la mayoría de móviles actuales, pero no en todos.</li>
+      <li><strong>Cuadraditos de 1,5 mm o más.</strong> Por debajo, la boquilla redondea las esquinas y el código se emborrona. Si el enlace es largo, el código tiene más cuadraditos: agranda el objeto o usa un enlace más corto.</li>
+      <li><strong>Relieve de 1 a 2 mm.</strong> Con 1,2 mm se ve nítido y el cambio de filamento se hace en pocas capas.</li>
+    </ul>
+    <h3>Con una impresora de un solo color</h3>
+    <p>También puedes hacerlo a dos colores: en tu programa de impresión añade un <em>cambio de filamento</em> (o una pausa) en la primera capa del relieve. En el llavero y la placa es la capa justo encima del grosor de la base (3 mm por defecto). La impresora se detiene, cambias el filamento y sigue.</p>
+  </section>
+
+  <section class="section wrap" id="preguntas">
+    <h2>Preguntas frecuentes</h2>
+    <div class="faq">
+      <details>
+        <summary>¿Qué es un archivo 3MF y por qué es mejor que el STL para un QR?</summary>
+        <p>El 3MF es el formato moderno de impresión 3D. A diferencia del STL, guarda varias piezas y su color dentro del mismo archivo. Así la base y el código en relieve se abren ya separados y con su color, y tu programa de impresión asigna cada uno a un filamento sin que tengas que hacer nada.</p>
+      </details>
+      <details>
+        <summary>¿El QR impreso en 3D se puede escanear con el móvil?</summary>
+        <p>Sí, siempre que haya contraste entre los dos colores (base clara y código oscuro es lo más fiable) y que cada cuadradito del código mida al menos 1,5 mm. La herramienta te avisa en directo si el contraste o el tamaño no son suficientes.</p>
+      </details>
+      <details>
+        <summary>¿Qué impresora necesito para imprimirlo a dos colores?</summary>
+        <p>Lo ideal es una impresora con varios filamentos (Bambu Lab con AMS, Prusa con MMU, Creality K1/K2 con CFS, etc.). Con una impresora de un solo extrusor también puedes: pon una pausa o un cambio de filamento en la capa donde empieza el relieve.</p>
+      </details>
+      <details>
+        <summary>¿Con qué programas se abre el archivo 3MF?</summary>
+        <p>Con cualquier programa de laminado actual: Bambu Studio, OrcaSlicer, PrusaSlicer, UltiMaker Cura, Creality Print o Anycubic Slicer.</p>
+      </details>
+      <details>
+        <summary>¿Para qué sirve la descarga en STL?</summary>
+        <p>Es para programas o impresoras antiguas que no leen 3MF. Descargas un ZIP con dos STL (la base y el código) que debes importar juntos y asignar a cada uno su filamento.</p>
+      </details>
+      <details>
+        <summary>¿Puedo poner el logo de mi negocio en el centro del QR?</summary>
+        <p>Sí. Sube tu logo o elige un emoji. En la versión 3D el logo se convierte en una silueta en relieve del color del código. El QR usa entonces la máxima corrección de errores para seguir leyéndose, pero conviene probarlo con el móvil antes de imprimir muchos.</p>
+      </details>
+      <details>
+        <summary>¿Es gratis? ¿Necesito registrarme?</summary>
+        <p>Es gratis y no hace falta registro. Todo se genera en tu navegador: tu enlace, tu logo y tus archivos no se suben a ningún servidor. Los códigos son estáticos y no caducan.</p>
+      </details>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <p class="brand-foot">Relieve QR · Generador de códigos QR para imprimir en 3D</p>
+    <nav aria-label="Legal">
+      <a href="privacidad.html">Privacidad</a>
+      <a href="aviso-legal.html">Aviso legal</a>
+      <a href="aviso-legal.html#cookies">Cookies</a>
+    </nav>
+    <p class="small">QR Code es una marca registrada de DENSO WAVE INCORPORATED.</p>
+  </div>
+</footer>
+
+<!-- ============ ANUNCIO · pop-up al descargar ============ -->
+<dialog class="ad-modal" id="adModal" aria-labelledby="adModalTitle">
+  <button type="button" class="ad-close" id="adModalX" aria-label="Cerrar anuncio">×</button>
+  <p class="ad-modal-title" id="adModalTitle">✓ Tu descarga ha empezado</p>
+  <div class="ad-slot ad-rect" data-ad="download-popup">
+    <!-- PEGA AQUÍ TU CÓDIGO DE ADSENSE (rectángulo 300×250) -->
+    <span class="ad-label">ANUNCIO</span><span class="ad-size">300 × 250</span>
+  </div>
+  <button type="button" class="btn btn-quiet ad-continue" id="adModalClose">Cerrar y seguir</button>
+</dialog>
+
+<!-- ============ ANUNCIO · notificación en la esquina ============ -->
+<aside class="ad-toast" id="adToast" hidden aria-label="Espacio publicitario">
+  <button type="button" class="ad-close" id="adToastX" aria-label="Cerrar anuncio">×</button>
+  <div class="ad-slot ad-mini" data-ad="corner-toast">
+    <!-- PEGA AQUÍ TU CÓDIGO DE ADSENSE (anuncio pequeño 300×100) -->
+    <span class="ad-label">ANUNCIO</span><span class="ad-size">300 × 100</span>
+  </div>
+</aside>
+
+<div class="toast-msg" id="toastMsg" role="status" hidden></div>
+
+<script defer src="lib/vendor/qr-code-styling.js"></script>
+<script defer src="lib/vendor/jszip.min.js"></script>
+<script defer src="lib/manifest.js?v=20260923"></script>
+<script defer src="qr3d.js?v=20260923"></script>
+<script defer src="main.js?v=20260923"></script>
+</body>
+</html>
